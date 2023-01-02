@@ -30,12 +30,18 @@ namespace AddressBookDay23
                 string State = Console.ReadLine();
                 Console.WriteLine("Enter Zip");
                 int Zip = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Enter Eamil");
+                Console.WriteLine("Enter Email");
                 string Email = Console.ReadLine();
                 Console.WriteLine("Enter PhoneNumber");
                 long PhoneNum = Convert.ToInt64(Console.ReadLine());
                 add.CreateContact(FirstName, LastName, Address, City, State, Email, Zip, PhoneNum);
                 Contact--;
+            }
+            Console.WriteLine("Do You Want To Modify(Y/N)");
+            char ch = Convert.ToChar(Console.ReadLine());
+            if (ch == 'Y' || ch == 'y')
+            {
+                add.EditContact();
             }
             // AddressBook ab = new AddressBook("Aditya","Patil","New Posari", "Mumbai", "Maharashtra", "patiladi411@gmail.com", 410222, 8308508570);
             //ab.DisplayContacts();
