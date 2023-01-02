@@ -14,6 +14,8 @@ namespace AddressBookDay23
         public Dictionary<string, Contact> addressBook = new Dictionary<string, Contact>();
         public Dictionary<string, AddressBook> addressBookDictionary = new Dictionary<string, AddressBook>();
 
+        public Dictionary<Contact, string> cityDictionary = new Dictionary<Contact, string>();
+        public Dictionary<Contact, string> stateDictionary = new Dictionary<Contact, string>();
         public void CreateContact(string firstName, string lastName, string address, string city, string state, string email, int zip, long phoneNum, string BookName)
         {
             Contact contact = new Contact(firstName, lastName, address, city, state, email, zip, phoneNum);
@@ -155,7 +157,60 @@ namespace AddressBookDay23
             }
             return false;
         }
-    }
+        public void SearchPersonByCity(string city)
+        {
+            foreach (AddressBook addressbookobj in addressBookDictionary.Values)
+            {
+                CreateCityDictionary();
+                List<Contact> contactList = GetListOfDictionaryKeys(addressbookobj.cityDictionary);
+                foreach (Contact contact in contactList.FindAll(c => c.City.Equals(city)).ToList())
+                {
+                    Console.WriteLine(contact.ToString);
+                }
+            }
+        }
 
+        private List<Contact> GetListOfDictionaryKeys(Dictionary<Contact, string> cityDictionary)
+        {
+            throw new NotImplementedException();
+        }
 
+        public void CreateCityDictionary()
+        {
+            foreach (AddressBook addressbookobj in addressBookDictionary.Values)
+            {
+                foreach (Contact contact in addressbookobj.addressBook.Values)
+                {
+                    addressbookobj.cityDictionary.Add(contact, contact.City);
+                }
+            }
+        }
+        public void SearchPersonByState(string state, object? city)
+        {
+            foreach (AddressBook addressbookobj in addressBookDictionary.Values)
+            {
+                CreateCityDictionary();
+                List<Contact> contactList = GetListOfDictionaryKeys(addressbookobj.stateDictionary);
+                foreach (Contact contact in contactList.FindAll(c => c.City.Equals(city)).ToList())
+                {
+                    Console.WriteLine(contact.ToString);
+                }
+            }
+        }
+        public void CreateStateDictionary()
+        {
+            foreach (AddressBook addressbookobj in addressBookDictionary.Values)
+            {
+                foreach (Contact contact in addressbookobj.addressBook.Values)
+                {
+                    addressbookobj.stateDictionary.Add(contact, contact.State);
+                }
+            }
+        }
+
+        internal void SearchPersonByState(string? v)
+        {
+            throw new NotImplementedException();
+        }
     }
+}
