@@ -1,5 +1,4 @@
-﻿using AddressBookDay23;
-using System;
+﻿using System;
 using static System.Console;
 
 namespace AddressBook
@@ -59,7 +58,9 @@ namespace AddressBook
                 }
                 else
                 {
+                    ForegroundColor = ConsoleColor.Red;
                     WriteLine("Name Does not exist");
+                    ResetColor();
                     break;
                 }
             }
